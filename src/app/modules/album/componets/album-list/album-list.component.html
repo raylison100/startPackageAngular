@@ -1,0 +1,26 @@
+<div class="container py-1">
+    <div *ngIf="albums.length == 0">
+        <h4 class="text-center text-muted">
+            Nenhum postagem foi realizada!
+        </h4>
+    </div>
+    <div class="row col-12 d-flex justify-content-center">
+        <div *ngFor="let album of albums" class="col-4 rounded-1 m--1 mb-2">
+            <a class="nav-link" [routerLink]="['detail', album.id]">
+                <div class="card bg-dark">
+                    <div class="card-body">
+                        <h5 class="card-title text-white">{{album.name}}</h5>
+                        <p class="card-text text-muted">
+                            Autor: {{album.nomeAuthor}} em: {{album.createdAt | date:"dd/MM/yyyy HH:mm"}}
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="btn-footer">
+            <button [routerLink]="['created']" type="button" class="btn btn-dark btn-lg rounded-circle">
+                <i class="fa fa-plus"></i>
+            </button>
+        </div>
+    </div>
+</div>

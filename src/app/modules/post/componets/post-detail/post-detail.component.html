@@ -1,0 +1,38 @@
+<div class="bg-white border" *ngIf="post$ | async as post">
+    <div class="p-1 row col-12 h-100 m-0">
+        <div class="col-md-8 col-12 py-2 d-flex justify-content-center align-items-center">
+            <app-post [src]="post.image" [alt]="post.text">
+            </app-post>
+        </div>
+        <div class="col-md-4 col-12 py-2">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="card-title">{{post.text}}</h6>
+                </div>
+            </div>
+            <div class="card mt-4 py-2">
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="d-grid gap-2">
+                                <button (click)="externalLink(post.link)" type="button" class="btn btn-dark btn-sm">
+                                    <i class="fa fa-link">&nbsp;</i><span>Saiba
+                                        mais</span>
+                                </button>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="d-grid gap-2">
+                                <button (click)="removePost()" type="button" class="btn btn-dark btn-sm">
+                                    <i class="fa fa-trash">&nbsp;</i><span>Remover</span>
+                                </button>
+                            </div>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <app-commet [postId]="postID"></app-commet>
+        </div>
+    </div>
+</div>

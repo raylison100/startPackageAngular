@@ -1,0 +1,20 @@
+.message, .message--success, .message--warning, .message--error {
+    padding: 1px;
+    font-size: 0.8em
+  }
+  
+  .message--error {
+    border-color: red;
+    color: red;
+  }
+  
+  .message--warning {
+    border-color: orange;
+    color: orange;
+  }
+  
+  .message--success {
+    border-color: green;
+    color: green;
+  }
+  

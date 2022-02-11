@@ -1,0 +1,35 @@
+<div class="mt-4 menssages" *ngIf="comments$ | async as comments">
+    <div *ngIf="comments.length == 0 ; else listComments"
+        class="d-flex justify-content-center align-items-center h-100 empty">
+        <h4 class="text-center text-muted">
+            Nenhum comentario foi adicionado!
+        </h4>
+    </div>
+    <ng-template #listComments>
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let comment of comments">
+                <p class="break-word">{{comment.comment}}</p>
+                <p class="text-dark font-weight-bold d-flex justify-content-between align-items-center">
+                    Autor: {{comment.nomeAuthor}} em: {{comment.createdAt | date:"dd/MM/yyyy HH:mm"}}
+                    <button (click)="remove(comment.id)" type="button" class="btn btn-dark btn-sm">
+                        <i class="fa fa-trash">&nbsp;</i>
+                    </button>
+                </p>
+            </li>
+        </ul>
+    </ng-template>
+</div>
+
+<div class="mt-4">
+    <form [formGroup]="formGroup" (submit)="create()">
+        <div class="input-group">
+            <textarea class="form-control" formControlName="comment"></textarea>
+            <div class="input-group-text">
+                <button type="submit" [disabled]="formGroup.invalid"
+                    class="btn btn-sm btn-dark pull-left">Comentar</button>
+            </div>
+        </div>
+        <app-message *ngIf="!!formGroup.get('comment')?.errors?.maxLength && formGroup.get('comment')?.touched"
+            [type]="messageTypes.Error">Tamanho maximo 255 caracteres</app-message>
+    </form>
+</div>

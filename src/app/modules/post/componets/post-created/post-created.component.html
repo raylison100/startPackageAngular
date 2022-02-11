@@ -1,0 +1,54 @@
+<div class="p-1">
+    <form [formGroup]="formGroup" (submit)="created()">
+        <div class="row col-12 h-100 m-0">
+            <div class="col-md-4 col-12 py-2 d-flex justify-content-center align-items-center">
+                <div class="form-group" *ngIf="!preview ; else previewImage">
+                    <button type="button" (click)="fileInput.click()" class="btn btn-dark btn-lg h-50">
+                        <i class="fa fa-image fa-04x align-middle"></i> Inserir Imagem
+                    </button>
+                    <input #fileInput type="file" hidden formControlName="file" accept="image/*"
+                        (change)="saveFile($event.target)">
+                    <app-message *ngIf="formGroup.get('file')?.errors?.requerid">
+                        Selecionar Imagem
+                    </app-message>
+                </div>
+                <ng-template #previewImage>
+                    <app-post [src]="preview" title="Preview">
+                    </app-post>
+                </ng-template>
+            </div>
+            <div class="col-md-8 col-12 py-2">
+                <div class="card py-2">
+                    <div class="card-body">
+                        <h4 class="text-center card-title">Novo Post</h4>
+                        <div class="mb-3 form-group">
+                            <textarea formControlName="description" class="form-control form-control-sm"
+                                placeholder="Descrição ..."></textarea>
+                            <app-message *ngIf="formGroup.get('description')?.errors?.maxlength">
+                                Tamanho máximo é 255 caracteres
+                            </app-message>
+                        </div>
+
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Link externo" formControlName="link" />
+                            <app-message *ngIf="formGroup.get('link')?.errors?.maxlength">
+                                Link muito grande
+                            </app-message>
+                        </div>
+
+                        <div class="mb-3" *ngIf="percentConclusion > 0">
+                            <div class="text-center display-4">
+                                Percentual de upload {{percentConclusion}} %
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-3">
+                            <button type="submit" class="btn btn-dark rounded-pill">Salvar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>

@@ -1,0 +1,27 @@
+<div class="d-flex justify-content-center">
+    <div class="container py-1 m-1">
+        <div *ngIf="posts.length == 0">
+            <h4 class="text-center text-muted">
+                Nenhum postagem foi realizada!
+            </h4>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div *ngFor="let post of posts" class="row py-1 bg-secondary rounded-3 m-1 w-75 mb-4">
+                <a class="nav-link" [routerLink]="['detail', post.id]">
+                    <app-card>
+                        <app-post [src]="post.image" [alt]="post.text">
+                        </app-post>
+                    </app-card>
+                    <p class="text-center text-white pt-3">
+                        {{post.text}}
+                    </p>
+                </a>
+            </div>
+            <div class="btn-footer">
+                <button [routerLink]="['created']" type="button" class="btn btn-dark btn-lg rounded-circle">
+                    <i class="fa fa-plus"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

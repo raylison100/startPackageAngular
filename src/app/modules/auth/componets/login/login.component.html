@@ -1,0 +1,28 @@
+<section class="container py-5">
+    <h4 class="text-center">Login</h4>
+
+    <form class="form mt-4" [formGroup]="formGroup" (submit)="login()">
+        <div class=" mb-3">
+            <input type="email" class="form-control" placeholder="Email" formControlName="email" />
+            <app-message *ngIf="formGroup.get('email')?.errors?.required && formGroup.get('email')?.touched"
+                [type]="messageTypes.Error">Email Obrigatório</app-message>
+
+            <app-message *ngIf="formGroup.get('email')?.errors?.email && formGroup.get('email')?.touched"
+                [type]="messageTypes.Error">Email invalido
+            </app-message>
+        </div>
+
+        <div class="mb-3">
+            <input type="password" class="form-control" placeholder="Senha" formControlName="password" />
+            <app-message *ngIf="formGroup.get('password')?.errors && formGroup.get('password')?.touched"
+                [type]="messageTypes.Error">Password Obrigatório
+            </app-message>
+        </div>
+
+        <div class="d-grid gap-3">
+            <button type="submit" class="btn btn-dark rounded-pill">login</button>
+        </div>
+    </form>
+
+    <p>Novo usuário? <a class="link-secondary" [routerLink]="['newuser']"> acesse aqui!</a></p>
+</section>
